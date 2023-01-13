@@ -1,3 +1,97 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background: radial-gradient(circle, rgb(185, 191, 220) 0%, rgb(54, 19, 26) 100%);
+  padding: 0;
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.topSection{
+  height: 20vh;
+    width: 100vw;
+    padding: 1px;
+    display: flex;
+    border: 1px solid black;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: baseline;
+	align-content: space-between;
+}
+.bottomSection{
+  height: 80vh;
+  width: 100vw;
+  padding: 1px;
+  display: flex;
+  border: 1px solid black;
+  display: flex;
+}
+.tripRequestbox{
+  height: 80vh;
+  width: 50vw;
+  padding: 1px;
+  display: flex;
+  border: 1px solid black;
+	display: flex;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+	align-content: stretch;
+}
+.headerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+.allTripsBox{
+  height: 80vh;
+  width: 50vw;
+  padding: 1px;
+  display: flex;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.buttonDiv{
+  border: 1px solid black;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+	align-content: space-between;
+
+}
+.bookingInfodiv{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid black;
+
+}
+
+.subButton{
+  height: 30px;
+  padding: 5px 16px;
+  font-size: 20px;
+  font-weight: var(--base-text-weight-medium, 500);
+  line-height: 25px;
+  white-space: nowrap;
+  vertical-align: right;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 6px;
+}
+.allTripsHeader{
+border: 1px solid;
+font-size: 50px;
+}
+.newTripsHeader{
+  border: 1px solid;
+  font-size: 50px;
+
 }
