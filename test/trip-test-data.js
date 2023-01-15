@@ -1,4 +1,4 @@
-const tripsTestData = [
+const tripTestData = [
     {
         trips: [
         {
@@ -2034,3 +2034,4 @@ const tripsTestData = [
         ]
         }
 ]
+export default tripTestData

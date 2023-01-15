@@ -401,3 +401,5 @@ const destinationTestData = [{
     }
     ]
     }]
+
+    export default destinationTestData

@@ -254,3 +254,4 @@ const travlerTestData = [
         ]
     }
 ]
+export default travlerTestData
