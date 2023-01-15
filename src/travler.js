@@ -6,12 +6,18 @@ class Travler {
       this.travlerType = travlerInfo.travelerType
       this.trips = trips
     }
+    findTrip(id) {
+        const trip = this.trips.find(trip => trip.id === id)
+        return trip 
+      }
 
-    //funtion that calulatesd total cost 
-    //itertate through all tyrips and add cost of all trips 
-function totalCost(){
-    
-}
+  calcTotalSpent(destRepo) {
+    const total = this.trips?.reduce((acc, trip) => {
+      acc+= trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)
+      return total
+    }, 0)
+    return total 
+  }
 
 
 }

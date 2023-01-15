@@ -12,17 +12,17 @@ class Trip {
     calcTripCost(destRepo) {
         
         const destination = destRepo.findDestByID(this.destinationID);
-        return destination ? (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) : false;
+        return destination (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
       }
     
       calcAgentFee(destRepo) {
         const tripCost = this.calcTripCost(destRepo)
-        return tripCost ? tripCost * .1: false;
+        return tripCost  * .1
       }
       
       findDestName(destRepo) {
         const destination = destRepo.findDestByID(this.destinationID);
-        return destination ? destination.destination : false;
+        return destination 
       }
 
 }
