@@ -9,19 +9,19 @@ class Trip {
       this.status = tripData.status
       this.suggestedActivities = tripData.suggestedActivities
     }
-    calcTripCost(destRepo) {
+    totalTripCost(destination) {
         
-        const destination = destRepo.findDestByID(this.destinationID);
+        const destination = destination.findDestByID(this.destinationID)
         return destination (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
       }
     
-      calcAgentFee(destRepo) {
-        const tripCost = this.calcTripCost(destRepo)
-        return tripCost  * .1
+      agentFee(destination) {
+        const tripCost = this.totalTripCost(destination)
+        return tripCost  * 0.1
       }
       
-      findDestName(destRepo) {
-        const destination = destRepo.findDestByID(this.destinationID);
+      findDestName(destination) {
+        const destination = destination.findDestByID(this.destinationID)
         return destination 
       }
 

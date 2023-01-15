@@ -11,9 +11,9 @@ class Travler {
         return trip 
       }
 
-  calcTotalSpent(destRepo) {
+   totalSpent(destRepo) {
     const total = this.trips?.reduce((acc, trip) => {
-      acc+= trip.calcTripCost(destRepo) + trip.calcAgentFee(destRepo)
+      acc+= trip.tripCost(destRepo) + trip.agentFee(destRepo)
       return total
     }, 0)
     return total 
