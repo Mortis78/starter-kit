@@ -6,7 +6,7 @@ class Trip {
       this.travelers = tripData.travelers
       this.date = tripData.date
       this.duration = tripData.duration
-      this.status = tripData.status
+      this.status = tripData.status || 'pending'
       this.suggestedActivities = tripData.suggestedActivities
     }
     totalTripCost(destination) {
