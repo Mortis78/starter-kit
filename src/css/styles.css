@@ -33,7 +33,6 @@ body {
   display: flex;
   border: 1px solid black;
 	display: flex;
-	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -47,14 +46,30 @@ body {
 
 }
 .allTripsBox{
+  
   height: 80vh;
   width: 50vw;
   padding: 1px;
   display: flex;
   border: 1px solid black;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
+.trip-card{
+  
+  border: 1px solid black;
+  display: flex;
+  height: 10;
+  width: 50vw;
+  flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
 }
 .buttonDiv{
   border: 1px solid black;
@@ -73,6 +88,10 @@ body {
   border: 1px solid black;
 
 }
+.allTrips{
+  
+  border: 1px solid black;
+}
 
 .subButton{
   height: 30px;
@@ -86,12 +105,7 @@ body {
   border: 1px solid;
   border-radius: 6px;
 }
-.allTripsHeader{
+.tripsHeader{
 border: 1px solid;
 font-size: 50px;
-}
-.newTripsHeader{
-  border: 1px solid;
-  font-size: 50px;
-
 }

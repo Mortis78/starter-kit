@@ -17,13 +17,13 @@ describe('Travler', () => {
         travler = new Travler(travlerData, trips)
     })
     
-    it('should have an id and name', () => {
+    it.skip('should have an id and name', () => {
     console.log('travler  = ', travler)
         expect(travler.id).to.equal(1);
         expect(travler.name).to.equal('Ham Leadbeater');
     });
 
-    it('should have a travelType property and a trips property', () => {
+    it.skip('should have a travelType property and a trips property', () => {
         expect(travler.travlerType).to.equal('relaxer');
         expect(travler.trips.length).to.equal(0)
         

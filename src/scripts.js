@@ -1,11 +1,56 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
+import Trip from './trips.js';
+import Travler from './travler';
+import Destination from './destination.js';
+import {getAPIData} from './apiCalls.js';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+const allTrips = document.querySelector('#all-trips')
+
+
+window.addEventListener("load", () => {
+    AllData()
+    
+})
+
+let travler
+let trips
+let destinations
+
+function AllData() {
+    Promise.all([getAPIData('travelers'), getAPIData('trips'), getAPIData('destinations')])
+      .then((data) => {
+        travler = new Travler(data[0].travelers[1])
+        trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
+        travler.trips = trips.map(e => new Trip(e))
+        destinations = data[2].destinations.map(e => new Destination(e))
+        displayTripData(travler)
+    })
+}
+
+function filteredArraysByID(ID,arrayID,filterArray){
+    return filterArray.filter(e => e[arrayID] === ID)
+    
+}
+
+function displayTripData(travler) {
+    console.log('traveler = ', travler)
+ const tripCards = travler.trips.forEach(e =>{
+     allTrips.innerHTML += `
+    <div class="trip-card">
+        <p>${e.date}</P>
+        <p>${e.status}</P>
+    </div
+ `})
+  return tripCards
+ }
 
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+
+
+
+
+
+//    allTrips.innerHTML = ``
+

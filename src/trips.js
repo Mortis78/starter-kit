@@ -1,3 +1,5 @@
+import Destination from '../src/destination.js';
+
 class Trip {
     constructor(tripData) {
       this.id = tripData.id
@@ -8,22 +10,24 @@ class Trip {
       this.duration = tripData.duration
       this.status = tripData.status || 'pending'
       this.suggestedActivities = tripData.suggestedActivities
+      console.log('trip data  = ',tripData)
     }
-    totalTripCost(destination) {
-        
-        const destination = destination.findDestByID(this.destinationID)
-        return destination (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
-      }
     
-      agentFee(destination) {
-        const tripCost = this.totalTripCost(destination)
-        return tripCost  * 0.1
-      }
+    totalTripCost(destination) {
+        const destinationCost = Destination.destinationByID(this.destinationID)
+        return destinationCost (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
+    }
+    
+    agentFee(destination) {
+        const agentCost = this.totalTripCost(destination)
+        return agentCost  * 0.1
+    }
       
-      findDestName(destination) {
-        const destination = destination.findDestByID(this.destinationID)
-        return destination 
-      }
+    findDestination(destination) {
+        const newDestination = Destination.findDestByID(this.destinationID)
+        return newDestination
+    }
+      
 
 }
 
