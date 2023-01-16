@@ -28,7 +28,7 @@ body {
 }
 .tripRequestbox{
   height: 80vh;
-  width: 50vw;
+  width: 40vw;
   padding: 1px;
   display: flex;
   border: 1px solid black;
@@ -48,7 +48,7 @@ body {
 .allTripsBox{
   
   height: 80vh;
-  width: 50vw;
+  width: 60vw;
   padding: 1px;
   display: flex;
   border: 1px solid black;
@@ -58,14 +58,13 @@ body {
   overflow-y: scroll;
 }
 .trip-card{
-  margin: 10px 10px 10px 10px;
+  padding-left: 15px;
   border: 1px solid black;
-  height: 25vh;
-  width: 20vw;
+  height: 50%;
+  width: 30%;
   display: flex;
 	flex-direction: column;
-  overflow: hidden;
-  overflow-y: scroll;
+  
 }
 .buttonDiv{
   border: 1px solid black;
@@ -81,10 +80,14 @@ body {
 
 }
 .allTrips{
-  
-  border: 1px solid black;
-  display: grid;
+  border: 1px solid red;
+
+  display: flex;
   column-gap: 10px;
+  gap: 10px 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+  flex-wrap: wrap;
 }
 
 .subButton{
