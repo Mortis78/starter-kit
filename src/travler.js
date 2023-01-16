@@ -4,7 +4,7 @@ class Travler {
       this.id = travlerInfo.id
       this.name = travlerInfo.name
       this.travlerType = travlerInfo.travelerType
-      this.trips = trips
+      this.trips = trips || []
     }
     findTrip(id) {
         const trip = this.trips.find(trip => trip.id === id)

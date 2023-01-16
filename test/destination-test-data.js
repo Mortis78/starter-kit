@@ -1,4 +1,5 @@
-const destinationTestData = [{
+const destinationTestData = [
+    {
     destinations: [
     {
     id: 1,
