@@ -38,11 +38,9 @@ function displayTripData(travler) {
  const tripCards = travler.trips.forEach(e =>{
      allTrips.innerHTML += `
     <div class="trip-card">
-        <p>the status of your trip is ${e.status}</P>
-        <p>you are leaving ${e.date}</P>
-        <p>you will be there for ${e.duration} days</P>
-        <p>suggested activities include ${e.suggestedsuggestedActivities}</P>
-        
+        <p> the status of your trip is ${e.status}</P>
+        <p> you are leaving ${e.date}</P>
+        <p> you will be there for ${e.duration} days</P>
     </div
  `})
   return tripCards
