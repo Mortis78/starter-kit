@@ -9,5 +9,14 @@ function getAPIData(info) {
       }
     })
 }
-
-export { getAPIData}
+function newTrip(data)  {
+  return fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  })
+  .then(response => response.json())
+}
+export { getAPIData, newTrip }

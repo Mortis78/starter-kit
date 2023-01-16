@@ -23,9 +23,17 @@
           <div class="headerDiv">
             <h3 class="tripsHeader">book a new trip here!</h3>
           </div>
-          <div class="bookingInfodiv">
-            <p>book a new trip somehow </p>
-          </div>
+          <form class="bookingInfodiv">
+            <label for="start">start date</label>
+            <input id="start" type="date" >
+            <label for="duration">how many days will you be gone?</label>
+            <input id="duration" type="number">
+            <label for="travler">how many people will be travling?</label>
+            <input id="travler" type="number">
+            <label for="locations">where do you want to go?</label>
+            <select name="locations" id="locations"></select>
+
+          </form>
           <div class="buttonDiv">
             <button class="subButton" id="sub-button">submit</button>
           </div>

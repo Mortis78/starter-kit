@@ -13,13 +13,13 @@ class Trip {
       console.log('trip data  = ',tripData)
     }
     
-    totalTripCost(destination) {
+    tripCost(destination) {
         const destinationCost = Destination.destinationByID(this.destinationID)
         return destinationCost (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
     }
     
-    agentFee(destination) {
-        const agentCost = this.totalTripCost(destination)
+    totalPlusAgentFee(destination) {
+        const agentCost = this.tripCost(destination)
         return agentCost  * 0.1
     }
       

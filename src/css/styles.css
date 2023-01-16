@@ -106,3 +106,13 @@ body {
 border: 1px solid;
 font-size: 50px;
 }
+.bookingInfodiv{
+
+  font-size: 20px;
+  padding-top: 5%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: stretch;
+
+}

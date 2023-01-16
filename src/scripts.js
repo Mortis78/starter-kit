@@ -5,12 +5,22 @@ import Travler from './travler';
 import Destination from './destination.js';
 import {getAPIData} from './apiCalls.js';
 
+const start = document.querySelector('#start')
+const duration = document.querySelector('#duration')
+const travlers = document.querySelector('#travlers')
+const locations = document.querySelector('#locations')
 const allTrips = document.querySelector('#all-trips')
+const totalAmount  = document.querySelector('#total-amount')
+const submitButton = document.querySelector('#sub-button')
 
+submitButton.addEventListener('click', () => {
+
+})
 
 window.addEventListener("load", () => {
     AllData()
-    
+    displayTotalAmount(travler.trips)
+    bookNewTrip(travler,destinations)
 })
 
 let travler
@@ -25,6 +35,8 @@ function AllData() {
         travler.trips = trips.map(e => new Trip(e))
         destinations = data[2].destinations.map(e => new Destination(e))
         displayTripData(travler)
+        addLocationToMenu(destinations)
+        
     })
 }
 
@@ -34,7 +46,6 @@ function filteredArraysByID(ID,arrayID,filterArray){
 }
 
 function displayTripData(travler) {
-    console.log('traveler = ', travler)
  const tripCards = travler.trips.forEach(e =>{
      allTrips.innerHTML += `
     <div class="trip-card">
@@ -46,11 +57,48 @@ function displayTripData(travler) {
   return tripCards
  }
 
+ function displayTotalAmount(trips){
+    totalAmount.innerHTML =  totalPlusAgentFee(trips)
+ }
 
 
+function addLocationToMenu(locationOptions){
+    console.log('destinations = ',locationOptions )
+    return locationOptions.map(e =>{
+        console.log(e.destinations.id)
+        locations.innerHTML += `
+        <option id="${e.destinations.id}" value="${e.destinations.destination}">${e.destinations.destination}</option>`
+    })
+}
 
 
+function bookNewTrip(travler,destinations){
+trips.push({
+    id: destinations.id,
+    userID: travler.userID,
+    destinationID: destination.value,
+    travelers: travlers.value,
+    date: date.value.toString(),
+    duration: duration.ariaValueMax,
+    status: "pending",
+    suggestedActivities: [ ]
+})
 
+}
 
-//    allTrips.innerHTML = ``
-
+//query select all imput fields  done
+//captur the value of each value  query.value
+//event listner on submit button
+//creat new object form input //format should be the same as trip
+//post new object to api
+//call api again to update api info for trips
+// {
+//     id: 2,
+//     userID: 35,
+//     destinationID: 25,
+//     travelers: 5,
+//     date: "2022/10/04",
+//     duration: 18,
+//     status: "approved",
+//     suggestedActivities: [ ]
+//     },
