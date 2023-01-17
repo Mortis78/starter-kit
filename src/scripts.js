@@ -3,40 +3,47 @@ import './css/styles.css';
 import Trip from './trips.js';
 import Travler from './travler';
 import Destination from './destination.js';
-import {getAPIData} from './apiCalls.js';
+import {getAPIData, newTrip} from './apiCalls.js';
 
+const costEst = document.querySelectorAll('#cost-est')
 const start = document.querySelector('#start')
 const duration = document.querySelector('#duration')
-const travlers = document.querySelector('#travlers')
+const travlers = document.querySelector('#travler')
 const locations = document.querySelector('#locations')
 const allTrips = document.querySelector('#all-trips')
 const totalAmount  = document.querySelector('#total-amount')
 const submitButton = document.querySelector('#sub-button')
+const travlerName = document.querySelector("#travler-name")
 
-submitButton.addEventListener('click', () => {
-
+submitButton.addEventListener('click',function(){
+    console.log('fired')
+    bookNewTrip()
 })
-
 window.addEventListener("load", () => {
     AllData()
-    displayTotalAmount(travler.trips)
-    bookNewTrip(travler,destinations)
-})
+    // displayTotalAmount(travler.trips)
+}) 
 
+
+
+let newTripID
 let travler
 let trips
 let destinations
 
+
+
+
 function AllData() {
     Promise.all([getAPIData('travelers'), getAPIData('trips'), getAPIData('destinations')])
       .then((data) => {
-        travler = new Travler(data[0].travelers[1])
-        trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
+          travler = new Travler(data[0].travelers[7],[])
+          trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
         travler.trips = trips.map(e => new Trip(e))
         destinations = data[2].destinations.map(e => new Destination(e))
         displayTripData(travler)
         addLocationToMenu(destinations)
-        
+        displayTravlerName(travler)
     })
 }
 
@@ -63,42 +70,61 @@ function displayTripData(travler) {
 
 
 function addLocationToMenu(locationOptions){
-    console.log('destinations = ',locationOptions )
     return locationOptions.map(e =>{
         console.log(e.destinations.id)
         locations.innerHTML += `
-        <option id="${e.destinations.id}" value="${e.destinations.destination}">${e.destinations.destination}</option>`
+        <option id="${e.destinations.id}" value="${e.destinations.id}">${e.destinations.destination}</option>`
     })
 }
 
 
-function bookNewTrip(travler,destinations){
-trips.push({
-    id: destinations.id,
-    userID: travler.userID,
-    destinationID: destination.value,
-    travelers: travlers.value,
-    date: date.value.toString(),
-    duration: duration.ariaValueMax,
-    status: "pending",
-    suggestedActivities: [ ]
-})
-
+function bookNewTrip(){
+    // console.log('trips = ',trips)
+    // let newTripID = trips.length + 1
+    console.log(location)
+   const newTripData = {
+        id: Date.now(),  
+        userID: travler.id,
+        destinationID: locations.value,
+        travelers: travlers.value,
+        date: start.value,
+        duration: duration.ariaValueMax,
+        status: "pending",
+        suggestedActivities: [],
+    }
+    console.log(newTripData)
+    costEst.innerHTML = `estimated cost with the 10% agent fee is${45}`  
+   
+        newTrip(newTripData)
+      
+    //    setTimeout(function(){
+    //     AllData()
+    //     // clearForm()
+    // }, 1000) 
 }
+// function clearForm(){
+//     location.value = ''
+//     start.value = ''
+//     duration.value = ''
+//     travlers.value = ''
+// }
 
-//query select all imput fields  done
-//captur the value of each value  query.value
-//event listner on submit button
-//creat new object form input //format should be the same as trip
+
+
+
+
+
+
+//query select all imput fields  {done}
+//captur the value of each value  {done}
+//event listner on submit button    {done}
+//creat new object form input //format should be the same as trip {done}
 //post new object to api
 //call api again to update api info for trips
 // {
-//     id: 2,
-//     userID: 35,
-//     destinationID: 25,
-//     travelers: 5,
-//     date: "2022/10/04",
-//     duration: 18,
-//     status: "approved",
-//     suggestedActivities: [ ]
-//     },
+
+
+
+function displayTravlerName(travler){
+    travlerName.innerHTML = travler.name
+}

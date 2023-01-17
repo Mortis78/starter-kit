@@ -10,7 +10,6 @@ class Trip {
       this.duration = tripData.duration
       this.status = tripData.status || 'pending'
       this.suggestedActivities = tripData.suggestedActivities
-      console.log('trip data  = ',tripData)
     }
     
     tripCost(destination) {
@@ -18,10 +17,6 @@ class Trip {
         return destinationCost (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
     }
     
-    totalPlusAgentFee(destination) {
-        const agentCost = this.tripCost(destination)
-        return agentCost  * 0.1
-    }
       
     findDestination(destination) {
         const newDestination = Destination.findDestByID(this.destinationID)
