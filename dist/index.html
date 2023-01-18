@@ -8,20 +8,31 @@
   <img src="" alt="alt">
 </head>
 <body>
-  <section class="topSection">
+  <section class="loginPage" id="login-page">
+    <div>
+      <h1 class="tripsHeader">Travel Agency</h1>
+    </div>
+    <form class="log-in" id="login">
+      <label class="user">Username: <input class="username-input" type="text" name="username" id="user-name" required/></label>
+      <label class="user">Password: <input class="password-input" type="text" name="password" id="user-password" required/></label>
+      <button class="login-button" id="user-log-in">Log In</button>
+    </form>
+    <p class="login-err"></p>
+  </section>
+  <section class="topSection hidden" id="top-section">
         <span>
-            <h1>client</h1>
+            <h2>client</h2>
             <p class="travler" id="travler-name">name and such</p>
         </span>
         <span>
-        <h2>spent this year</h2>
+        <h3>spent this year</h3>
         <p class="travler" id="total-amount">amount go's here</p>
         </span>
     </section>
-    <section class="bottomSection">
+    <section class="bottomSection hidden" id="bottom-section">
         <span class="tripRequestbox">
           <div class="headerDiv">
-            <h3 class="tripsHeader">book a new trip here!</h3>
+            <h4 class="tripsHeader">book a new trip here!</h4>
           </div>
           <form class="bookingInfodiv">
             <label for="start">start date</label>
@@ -40,7 +51,7 @@
         </span>
         <span class="allTripsBox">
           <div class="headerDiv">
-            <h4 class="tripsHeader">your trips</h4>
+            <h5 class="tripsHeader">your trips</h5>
           </div>
             <div class="allTrips" id="all-trips"></div>
         </span>
