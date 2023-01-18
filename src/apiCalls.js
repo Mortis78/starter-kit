@@ -12,10 +12,10 @@ function getAPIData(info) {
 function newTrip(data)  {
   return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
-      body: JSON.stringify(data),
       headers: {
-          'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
   })
   .then(response => response.json())
   .then(response => console.log(response))

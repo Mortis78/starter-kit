@@ -5,6 +5,13 @@ import Travler from './travler';
 import Destination from './destination.js';
 import {getAPIData, newTrip} from './apiCalls.js';
 
+const loginErr = document.querySelector('#login-err')
+const loginPage = document.querySelector('#login')
+const topSection = document.querySelector('#top-section')
+const bottomSection = document.querySelector('#bottom-section')
+const loginUsername = document.querySelector('#user-name')
+const loginPassword = document.querySelector('#user-password')
+const loginButton = document.querySelector('#user-log-in')
 const costEst = document.querySelectorAll('#cost-est')
 const start = document.querySelector('#start')
 const duration = document.querySelector('#duration')
@@ -15,18 +22,18 @@ const totalAmount  = document.querySelector('#total-amount')
 const submitButton = document.querySelector('#sub-button')
 const travlerName = document.querySelector("#travler-name")
 
+
+loginButton.addEventListener('click', userLogin)
 submitButton.addEventListener('click',function(){
     console.log('fired')
     bookNewTrip()
 })
-window.addEventListener("load", () => {
-    AllData()
-    // displayTotalAmount(travler.trips)
-}) 
+// window.addEventListener("load", () => {
+   
+//     // displayTotalAmount(travler.trips)
+// }) 
 
 
-
-let newTripID
 let travler
 let trips
 let destinations
@@ -37,13 +44,14 @@ let destinations
 function AllData() {
     Promise.all([getAPIData('travelers'), getAPIData('trips'), getAPIData('destinations')])
       .then((data) => {
-          travler = new Travler(data[0].travelers[7],[])
+          travler = new Travler(data[0].travelers[7])
           trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
         travler.trips = trips.map(e => new Trip(e))
         destinations = data[2].destinations.map(e => new Destination(e))
         displayTripData(travler)
         addLocationToMenu(destinations)
         displayTravlerName(travler)
+        console.log(travler)
     })
 }
 
@@ -79,28 +87,25 @@ function addLocationToMenu(locationOptions){
 
 
 function bookNewTrip(){
-    // console.log('trips = ',trips)
-    // let newTripID = trips.length + 1
-    console.log(location)
+    console.log('duration value =',parseInt(duration.value))
    const newTripData = {
-        id: Date.now(),  
+        id: parseInt(Date.now()),  
         userID: travler.id,
-        destinationID: locations.value,
-        travelers: travlers.value,
-        date: start.value,
-        duration: duration.ariaValueMax,
+        destinationID: parseInt(locations.value),
+        travelers: parseInt(travlers.value),
+        date:start.value.split('-').join('/'),
+        duration: parseInt(duration.Value),
         status: "pending",
         suggestedActivities: [],
     }
     console.log(newTripData)
-    costEst.innerHTML = `estimated cost with the 10% agent fee is${45}`  
-   
-        newTrip(newTripData)
-      
-    //    setTimeout(function(){
-    //     AllData()
-    //     // clearForm()
-    // }, 1000) 
+    costEst.innerHTML = `estimated cost with the 10% agent fee is`  
+    newTrip(newTripData)
+    // clearForm()
+}
+    
+function displayTravlerName(travler){
+    travlerName.innerHTML = travler.name
 }
 // function clearForm(){
 //     location.value = ''
@@ -110,10 +115,29 @@ function bookNewTrip(){
 // }
 
 
+function hideLogin() {
+    console.log('hide log')
+    loginPage.classList.add('hidden')
+    topSection.classList.remove('hidden')
+    bottomSection.classList.remove('hidden')
+}
 
 
-
-
+//   /check for corect info
+//   / username = travler${id}
+//   /password = travel
+function userLogin(event){
+    event.preventDefault()
+    console.log('user log in1')
+    if (loginUsername.value === 'traveler8' && loginPassword.value === 'traveler') {
+        console.log('user log in2')
+        hideLogin()
+        AllData()
+    }
+    // else{
+    //     loginErr.innerHTML = 'im sorry some your username or password did not match'
+    // }
+}
 
 //query select all imput fields  {done}
 //captur the value of each value  {done}
@@ -122,9 +146,5 @@ function bookNewTrip(){
 //post new object to api
 //call api again to update api info for trips
 // {
-
-
-
-function displayTravlerName(travler){
-    travlerName.innerHTML = travler.name
-}
+    
+    
