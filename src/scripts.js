@@ -18,14 +18,13 @@ const duration = document.querySelector('#duration')
 const travlers = document.querySelector('#travler')
 const locations = document.querySelector('#locations')
 const allTrips = document.querySelector('#all-trips')
-const totalAmount  = document.querySelector('#total-amount')
+const totalAmountSpent  = document.querySelector('#total-amount')
 const submitButton = document.querySelector('#sub-button')
 const travlerName = document.querySelector("#travler-name")
 
 
 loginButton.addEventListener('click', userLogin)
 submitButton.addEventListener('click',function(){
-    console.log('fired')
     bookNewTrip()
 })
 // window.addEventListener("load", () => {
@@ -37,6 +36,7 @@ submitButton.addEventListener('click',function(){
 let travler
 let trips
 let destinations
+let amountSpent
 
 
 
@@ -51,7 +51,7 @@ function AllData() {
         displayTripData(travler)
         addLocationToMenu(destinations)
         displayTravlerName(travler)
-        console.log(travler)
+        totalAmount()
     })
 }
 
@@ -72,14 +72,10 @@ function displayTripData(travler) {
   return tripCards
  }
 
- function displayTotalAmount(trips){
-    totalAmount.innerHTML =  totalPlusAgentFee(trips)
- }
 
 
 function addLocationToMenu(locationOptions){
     return locationOptions.map(e =>{
-        console.log(e.destinations.id)
         locations.innerHTML += `
         <option id="${e.destinations.id}" value="${e.destinations.id}">${e.destinations.destination}</option>`
     })
@@ -128,9 +124,7 @@ function hideLogin() {
 //   /password = travel
 function userLogin(event){
     event.preventDefault()
-    console.log('user log in1')
     if (loginUsername.value === 'traveler8' && loginPassword.value === 'traveler') {
-        console.log('user log in2')
         hideLogin()
         AllData()
     }
@@ -147,4 +141,31 @@ function userLogin(event){
 //call api again to update api info for trips
 // {
     
-    
+
+
+//iterate over trip array
+//compare trip array against destination array
+//if destinationID === id
+// motiply total cost by the number of people
+
+    function totalAmount(){
+        console.log('destinations.destination = ',destinations.destinations)
+       const totalCost = trips.reduce((acc,trip)=>{
+           destinations.forEach(dest => {
+                console.log('dest = ',dest)
+                if(dest.id === trip.destinationID  ){
+                    acc += dest.estimatedLodgingCostPerDay * trip.duration
+                    acc += dest.estimatedFlightCostPerPerson * trip.travlers
+                }
+            })
+            return acc 
+        },0)
+        console.log('total cost',totalCost)
+        amountSpent = `you have spent $${totalCost + (totalCost * .1).toFixed(2)}`
+        return totalCost
+    }
+
+
+    function updateAmountSpent(){
+        totalAmountSpent.innerHTML = `you have spent $${amountSpent}`
+    }

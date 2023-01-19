@@ -12,10 +12,6 @@ class Trip {
       this.suggestedActivities = tripData.suggestedActivities
     }
     
-    tripCost(destination) {
-        const destinationCost = Destination.destinationByID(this.destinationID)
-        return destinationCost (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
-    }
     
       
     findDestination(destination) {
