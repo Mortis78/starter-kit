@@ -44,7 +44,8 @@ let amountSpent
 function AllData() {
     Promise.all([getAPIData('travelers'), getAPIData('trips'), getAPIData('destinations')])
       .then((data) => {
-          travler = new Travler(data[0].travelers[2])
+          travler = new Travler(data[0].travelers[4])
+          console.log('travler',travler)
           trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
         travler.trips = trips.map(e => new Trip(e))
         destinations = data[2].destinations
@@ -52,6 +53,7 @@ function AllData() {
         addLocationToMenu(destinations)
         displayTravlerName(travler)
         updateAmountSpent()
+        console.log('total trips', trips.length)
     })
 }
 
@@ -83,32 +85,33 @@ function addLocationToMenu(locationOptions){
 
 
 function bookNewTrip(){
-    console.log('duration value =',parseInt(duration.value))
+    console.log('duration', duration.value)
    const newTripData = {
         id: parseInt(Date.now()),  
         userID: travler.id,
         destinationID: parseInt(locations.value),
         travelers: parseInt(travlers.value),
+        duration: parseInt(duration.value),
         date:start.value.split('-').join('/'),
-        duration: parseInt(duration.Value),
         status: "pending",
         suggestedActivities: [],
     }
     console.log(newTripData)
+    newTrip(newTripData)                 
     costEst.innerHTML = `estimated cost with the 10% agent fee is`  
-    newTrip(newTripData)
-    // clearForm()
+    clearForm()
+    AllData()
 }
     
 function displayTravlerName(travler){
     travlerName.innerHTML = travler.name
 }
-// function clearForm(){
-//     location.value = ''
-//     start.value = ''
-//     duration.value = ''
-//     travlers.value = ''
-// }
+function clearForm(){
+    location.value = ''
+    start.value = ''
+    duration.value = ''
+    travlers.value = ''
+}
 
 
 function hideLogin() {
@@ -124,7 +127,7 @@ function hideLogin() {
 //   /password = travel
 function userLogin(event){
     event.preventDefault()
-    if (loginUsername.value === 'traveler8' && loginPassword.value === 'traveler') {
+    if (loginUsername.value === 'traveler5' && loginPassword.value === 'traveler') {
         hideLogin()
         AllData()
     }

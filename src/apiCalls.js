@@ -20,5 +20,6 @@ function newTrip(data)  {
   })
   .then(response => response.json())
   .then(response => console.log(response))
+  
 }
 export { getAPIData, newTrip }
