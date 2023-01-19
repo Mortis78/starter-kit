@@ -10,6 +10,7 @@ function getAPIData(info) {
     })
 }
 function newTrip(data)  {
+  console.log('what is data',data)
   return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       headers: {

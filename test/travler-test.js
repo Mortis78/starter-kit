@@ -7,28 +7,25 @@ import Trip from '../src/trips';
 import tripTestData from './trip-test-data';
 
 describe('Travler', () => {
-    let travlerData
     let travler
-    let trips
-    beforeEach(() => {
-        travlerData = travlerTestData[0].travelers[0]
-        trips = tripTestData[0].trips.filter(trip => trip.userID === travler.id)
-        console.log('trips = ',trips)
-        travler = new Travler(travlerData, trips)
-    })
     
-    it.skip('should have an id and name', () => {
-    console.log('travler  = ', travler)
+    beforeEach(() => {
+        travler = new Travler(travlerTestData[0].travelers[0])
+        
+    })
+    it('Should be a function', function() {
+        expect(travler).to.be.an.instanceOf(Travler)
+      });
+    
+    it('should have an id', () => {
         expect(travler.id).to.equal(1);
+    });
+
+    it('should have an  name', () => {
         expect(travler.name).to.equal('Ham Leadbeater');
     });
 
-    it.skip('should have a travelType property and a trips property', () => {
-        expect(travler.travlerType).to.equal('relaxer');
-        expect(travler.trips.length).to.equal(0)
-        
-    });
-     
-      
-   
+    it('Should have a traveler type', function () {
+        expect(travler.travlerType).to.equal("relaxer")
+      })
 });

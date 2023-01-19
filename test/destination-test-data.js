@@ -1,5 +1,5 @@
 const destinationTestData = [
-    {
+{
     destinations: [
     {
     id: 1,

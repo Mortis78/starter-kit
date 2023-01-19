@@ -7,15 +7,11 @@ class Trip {
       this.destinationID = tripData.destinationID
       this.travelers = tripData.travelers
       this.date = tripData.date
-      this.duration = tripData.duration
+      this.duration = tripData.duration || 0
       this.status = tripData.status || 'pending'
       this.suggestedActivities = tripData.suggestedActivities
     }
     
-    tripCost(destination) {
-        const destinationCost = Destination.destinationByID(this.destinationID)
-        return destinationCost (this.travelers * destination.estimatedFlightCostPerPerson) + (destination.estimatedLodgingCostPerDay * this.duration) 
-    }
     
       
     findDestination(destination) {
