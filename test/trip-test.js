@@ -12,6 +12,9 @@ describe('Trip', () => {
         newTrip = new Trip(tripTestData[0].trips[0])
         destination = new Destination(destinationTestData[0].destinations[0])
     })
+    it('Should be a function', function() {
+        expect(Trip).to.be.a('function');
+    })
     
     it('Should have an id for each trip', function () {
         expect(newTrip.id).to.equal(1)
