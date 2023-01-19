@@ -44,14 +44,14 @@ let amountSpent
 function AllData() {
     Promise.all([getAPIData('travelers'), getAPIData('trips'), getAPIData('destinations')])
       .then((data) => {
-          travler = new Travler(data[0].travelers[7])
+          travler = new Travler(data[0].travelers[2])
           trips =  filteredArraysByID(travler.id,'userID',data[1].trips)
         travler.trips = trips.map(e => new Trip(e))
-        destinations = data[2].destinations.map(e => new Destination(e))
+        destinations = data[2].destinations
         displayTripData(travler)
         addLocationToMenu(destinations)
         displayTravlerName(travler)
-        totalAmount()
+        updateAmountSpent()
     })
 }
 
@@ -77,7 +77,7 @@ function displayTripData(travler) {
 function addLocationToMenu(locationOptions){
     return locationOptions.map(e =>{
         locations.innerHTML += `
-        <option id="${e.destinations.id}" value="${e.destinations.id}">${e.destinations.destination}</option>`
+        <option id="${e.id}" value="${e.id}">${e.destination}</option>`
     })
 }
 
@@ -149,23 +149,23 @@ function userLogin(event){
 // motiply total cost by the number of people
 
     function totalAmount(){
-        console.log('destinations.destination = ',destinations.destinations)
        const totalCost = trips.reduce((acc,trip)=>{
            destinations.forEach(dest => {
-                console.log('dest = ',dest)
-                if(dest.id === trip.destinationID  ){
-                    acc += dest.estimatedLodgingCostPerDay * trip.duration
-                    acc += dest.estimatedFlightCostPerPerson * trip.travlers
+                 if(dest.id === trip.destinationID && trip.userID === travler.id){    
+                    acc += (dest.estimatedLodgingCostPerDay * trip.duration)
+                    acc += dest.estimatedFlightCostPerPerson * trip.travelers
                 }
             })
+
             return acc 
         },0)
-        console.log('total cost',totalCost)
         amountSpent = `you have spent $${totalCost + (totalCost * .1).toFixed(2)}`
         return totalCost
     }
 
 
     function updateAmountSpent(){
-        totalAmountSpent.innerHTML = `you have spent $${amountSpent}`
+        console.log('1')
+        totalAmount()
+        totalAmountSpent.innerHTML = amountSpent
     }
